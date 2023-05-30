@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">username</th>
+      <th scope="col">email</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for user in users %}
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endspaceless %}{% endblock %}

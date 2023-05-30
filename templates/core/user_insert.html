@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+
+<form method="post">
+
+<p>
+    <label for="id_username">Username:</label>
+    <input type="text" name="username" maxlength="100" autofocus="" required="" id="id_username">
+  </p>
+  <p>
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" maxlength="254" required="" id="id_email">
+  </p>
+  <p>
+    <label for="id_first_name">First name:</label>
+    <input type="text" name="first_name" maxlength="100" required="" id="id_first_name">
+  </p>
+  <p>
+    <label for="id_first_name">Last name:</label>
+    <input type="text" name="last_name" maxlength="100" required="" id="id_last_name">
+  </p>
+  <p>
+    <label for="id_password1">Password1:</label>
+    <input type="text" name="password1" maxlength="100" required="" id="id_password1">
+  </p>
+  <p>
+    <label for="id_password2">Password2:</label>
+    <input type="text" name="password2" maxlength="100" required="" id="id_password2">
+  </p>
+  <input type="submit" value="Send">
+</form>
+</body>
+</html>
+{% endspaceless %}{% endblock %}

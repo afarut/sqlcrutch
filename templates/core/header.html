@@ -1,0 +1,30 @@
+<header style="height: 90px; width: 100%; background: grey;">
+	<nav style="display: inline-block; text-align: center; width: 100%;">
+		<a href="{% url 'core:user_select' %}">user select</a>
+		<a href="{% url 'core:user_insert' %}">user insert</a>
+		<a href="{% url 'core:book_select' %}">book select</a>
+		<a href="{% url 'core:book_insert' %}">book insert</a>
+		<a href="{% url 'core:tag_select' %}">tag select</a>
+		<a href="{% url 'core:tag_insert' %}">tag insert</a>
+		<a href="{% url 'core:chapter_select' %}">chapter select</a>
+		<a href="{% url 'core:chapter_insert' %}">chapter insert</a>
+	</nav>
+</header>
+<style type="text/css">
+	
+a{
+	color: white;
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 0px 20px;
+}
+a:hover{
+	color: black;
+}
+
+header{
+	padding-top: 30px;
+}
+
+</style>

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">slug</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for tag in tags %}
+    <tr>
+      <th scope="row">{{tag.id}}</th>
+      <td>{{tag.title}}</td>
+      <td>{{tag.slug}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endspaceless %}{% endblock %}

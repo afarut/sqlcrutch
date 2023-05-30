@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">num</th>
+      <th scope="col">title</th>
+      <th scope="col">text</th>
+      <th scope="col">pub_date</th>
+      <th scope="col">book_id</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for chapter in chapters %}
+    <tr>
+      <th scope="row">{{chapter.id}}</th>
+      <td>{{chapter.num}}</td>
+      <td>{{chapter.title}}</td>
+      <td>{{chapter.text}}</td>
+      <td>{{chapter.pub_date}}</td>
+      <td>{{chapter.book_id}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endspaceless %}{% endblock %}

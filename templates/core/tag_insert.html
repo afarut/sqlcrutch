@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+
+
+<form method="post">
+	<p>
+    <label for="tag_title">Title:</label>
+	<input type="text" name="title" id="tag_title">
+	</p>
+	<p>
+    <label for="tag_slug">Slug:</label>
+	<input type="text" name="slug" id="tag_slug">
+	</p>
+	<p>
+	<input type="submit" value="Send">
+	</p>
+</form>
+
+{% endspaceless %}{% endblock %}

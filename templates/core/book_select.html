@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block main_content %}{% spaceless %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">description</th>
+      <th scope="col">views</th>
+      <th scope="col">pub_date</th>
+      <th scope="col">author_id</th>
+      <th scope="col">image</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for book in books %}
+    <tr>
+      <th scope="row">{{book.id}}</th>
+      <td>{{book.title}}</td>
+      <td>{{book.description}}</td>
+      <td>{{book.views}}</td>
+      <td>{{book.pub_date}}</td>
+      <td>{{book.author_id}}</td>
+      <td><img src="{{book.image}}" height="40px"></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endspaceless %}{% endblock %}
