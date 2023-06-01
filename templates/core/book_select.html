@@ -11,6 +11,8 @@
       <th scope="col">pub_date</th>
       <th scope="col">author_id</th>
       <th scope="col">image</th>
+      <th scope="col">genres</th>
+      <th scope="col">tags</th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +23,18 @@
       <td>{{book.description}}</td>
       <td>{{book.views}}</td>
       <td>{{book.pub_date}}</td>
-      <td>{{book.author_id}}</td>
+      <td><a href="{% url 'core:get_user_by_id' book.author_id %}">{{book.author_username}}</a></td>
       <td><img src="{{book.image}}" height="40px"></td>
+      <td>
+        {% for genre in book.genres %}
+        <p><a href="{% url 'core:get_books_by_genre' genre.slug %}">{{genre.title}}</a></p>
+        {% endfor %}
+      </td>
+      <td>
+        {% for tag in book.tags %}
+        <p><a href="{% url 'core:get_books_by_tag' tag.slug %}">{{tag.title}}</a></p>
+        {% endfor %}
+      </td>
     </tr>
     {% endfor %}
   </tbody>

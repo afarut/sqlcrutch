@@ -51,11 +51,11 @@ def image_save(file):
     return settings.IMAGE_FOLDER + name
 
 
-def get_users():
+def get_users(conditions=""):
     users = []
     with connections.create_connection("default").cursor() as cursor:
-        cursor.execute("""
-            SELECT username, email, first_name, id, last_name FROM auth_user
+        cursor.execute(f"""
+            SELECT username, email, first_name, id, last_name FROM auth_user {conditions}
         """)
         rows = cursor.fetchall()
         for row in rows:
@@ -64,20 +64,28 @@ def get_users():
     return users
 
 
-def get_books():
+def get_books(conditions=""):
     books = []
     with connections.create_connection("default").cursor() as cursor:
-        cursor.execute("SELECT id, title, description, views, pub_date, author_id, image FROM core_book")
+        cursor.execute(f"SELECT core_book.id, core_book.title, core_book.description, views, pub_date, author_id, image, auth_user.username FROM core_book JOIN auth_user ON auth_user.id = core_book.author_id {conditions}")
         for book in cursor.fetchall():
-            data = {"id": book[0], "title": book[1], "description": book[2], "views": book[3], "pub_date": book[4], "author_id": book[5], "image": settings.MEDIA_URL+book[6]}
+            data = {"id": book[0], "title": book[1], "description": book[2], "views": book[3], "pub_date": book[4], "author_id": book[5], "image": settings.MEDIA_URL+book[6], "author_username": book[7]}
+            cursor.execute("SELECT title, slug FROM core_tag JOIN core_book_tags ON core_tag.id=core_book_tags.tag_id WHERE core_book_tags.book_id = %s", [book[0], ])
+            data["tags"] = []
+            for tag in cursor.fetchall():
+                data["tags"].append({"title": tag[0], "slug": tag[1]})
+            cursor.execute("SELECT title, slug FROM core_genre JOIN core_book_genres ON core_genre.id=core_book_genres.genre_id WHERE core_book_genres.book_id = %s", [book[0], ])
+            data["genres"] = []
+            for genre in cursor.fetchall():
+                data["genres"].append({"title": genre[0], "slug": genre[1]})
             books.append(data)
     return books
 
 
-def get_chapters():
+def get_chapters(conditions=""):
     chapters = []
     with connections.create_connection("default").cursor() as cursor:
-        cursor.execute("SELECT id, num, title, text, pub_date, book_id FROM core_chapter")
+        cursor.execute(f"SELECT id, num, title, text, pub_date, book_id FROM core_chapter {conditions}")
         for chapter in cursor.fetchall():
             data = {"id": chapter[0], "num": chapter[1], "title": chapter[2], "text": chapter[3], "pub_date": chapter[4], "book_id": chapter[5]}
             chapters.append(data)

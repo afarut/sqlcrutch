@@ -46,7 +46,6 @@ def chapter_insert(request):
 
 def chapter_select(request):
     chapters = get_chapters()
-    print(chapters)
     return render(request, "core/chapter_select.html", {"chapters": chapters})
 
 
@@ -105,3 +104,40 @@ def tag_insert(request):
 def tag_select(request):
     tags = get_tags()
     return render(request, "core/tag_select.html", {"tags": tags})
+
+
+def get_books_by_genre(request, slug):
+    data = get_books()
+    books = []
+    for book in data:
+        for genre in book["genres"]:
+            if genre["slug"] == slug:
+                books.append(book)
+                break
+    return render(request, "core/book_select.html", {"books": books})
+
+
+def get_books_by_tag(request, slug):
+    data = get_books()
+    books = []
+    for book in data:
+        for tag in book["tags"]:
+            if tag["slug"] == slug:
+                books.append(book)
+                break
+    return render(request, "core/book_select.html", {"books": books})
+
+
+def get_book_by_id(request, book_id):
+    books = get_books(f"WHERE core_book.id={book_id}")
+    return render(request, "core/book_select.html", {"books": books})
+
+
+def get_chapter_by_id(request, chapter_id):
+    chapters = get_chapters(f"WHERE id={chapter_id}")
+    return render(request, "core/chapter_select.html", {"chapters": chapters})
+
+
+def get_user_by_id(request, user_id):
+    users = get_users(f"WHERE id = {user_id}")
+    return render(request, "core/user_select.html", {"users": users})

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8skrfix^lx6%75f_ws1k-ni+7am434x6$b-&(p95#gtckpmu==
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -82,10 +82,12 @@ DATABASES = {
         'NAME': 'test_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 
 
 # Password validation

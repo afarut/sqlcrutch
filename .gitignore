@@ -1,3 +1,6 @@
 /env
 .env
-
+*.jpg
+*__pycache__*
+*.pyc
+/postgres_data
