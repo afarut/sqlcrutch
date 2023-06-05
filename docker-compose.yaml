@@ -8,8 +8,8 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: test_db
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
   web:
@@ -21,7 +21,7 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 80:80
+      - 1337:80
     depends_on:
       - web
 
