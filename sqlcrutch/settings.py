@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8skrfix^lx6%75f_ws1k-ni+7am434x6$b-&(p95#gtckpmu==
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "sql.elirm.ru"]
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['http://sql.elirm.ru', "http://localhost:80"]
 
 
 # Password validation
